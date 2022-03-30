@@ -25,7 +25,11 @@ void Trie::Insert(std::string& word)
 			p = p->Nodes[asciiIndex].get();
 		}
 	}
-	p->isEndOfTheWord = true;
+	
+	if (!word.empty())
+	{
+		p->isEndOfTheWord = true;
+	}
 }
 
 std::string Trie::Search(std::string& word) const
@@ -41,9 +45,12 @@ std::string Trie::Search(std::string& word) const
 			}
 			p = p->Nodes[asciiIndex].get();
 		}
-	}
-	if (!p->isEndOfTheWord) {
-		return "no";
+		if (std::isdigit(word[i])) {
+			return "no";
+		}
+		if (!p->isEndOfTheWord) {
+			return "no";
+		}
 	}
 	return "yes";
 }

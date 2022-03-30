@@ -23,7 +23,7 @@ int main()
     std::ifstream inputFile("wordsEn.txt");
 
     inputFile >> trie;
-    std::string apple = "yellow";
+    std::string apple = " ";
     std::cout << trie.Search(apple);
 }
 
