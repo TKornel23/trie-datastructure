@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Trie.cpp" />
     <ClCompile Include="TrieDataStructure.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Trie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

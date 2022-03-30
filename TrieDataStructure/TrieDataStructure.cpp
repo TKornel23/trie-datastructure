@@ -2,10 +2,29 @@
 //
 
 #include <iostream>
+#include <string>
+#include <fstream>
+#include "Trie.h"
+
+std::ifstream& operator>>(std::ifstream& ifs, Trie& trie) {
+    while (!ifs.eof()) {
+        std::string line;
+        std::getline(ifs, line);
+        trie.Insert(line);
+    }
+
+    return ifs;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Trie trie = Trie();
+
+    std::ifstream inputFile("wordsEn.txt");
+
+    inputFile >> trie;
+    std::string apple = "yellow";
+    std::cout << trie.Search(apple);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
