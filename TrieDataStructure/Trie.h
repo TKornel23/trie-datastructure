@@ -15,7 +15,7 @@ private:
 public:
 	Trie();
 
-	void Insert(std::string& word);
-	std::string Search(std::string& word) const;
+	void Insert(const std::string& word);
+	std::string Search(const std::string& word) const;
 };
 

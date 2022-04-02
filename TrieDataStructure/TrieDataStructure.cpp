@@ -1,10 +1,8 @@
-// TrieDataStructure.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "Trie.h"
+#include <sstream>
 
 std::ifstream& operator>>(std::ifstream& ifs, Trie& trie) {
     while (!ifs.eof()) {
@@ -16,6 +14,29 @@ std::ifstream& operator>>(std::ifstream& ifs, Trie& trie) {
     return ifs;
 }
 
+std::ostream& operator<<(std::ostream& os, Trie& trie) {
+    std::cout << "Write an english sentence" << std::endl;
+
+    std::string mySentence = "";
+
+    std::getline(std::cin,mySentence);
+
+    const char space_char = ' ';
+    std::vector<std::string> words;
+
+    std::stringstream sstream(mySentence);
+    std::string word;
+    while (std::getline(sstream, word, space_char)) {
+        word.erase(std::remove_if(word.begin(), word.end(), ispunct), word.end());
+        words.push_back(word);
+    }
+
+    for (const auto& str : words) {
+        os << str + " - " + trie.Search(str) << std::endl;
+    }
+    return os;
+}
+
 int main()
 {
     Trie trie = Trie();
@@ -23,17 +44,6 @@ int main()
     std::ifstream inputFile("wordsEn.txt");
 
     inputFile >> trie;
-    std::string apple = "apple";
-    std::cout << trie.Search(apple);
+
+    std::cout << trie;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

@@ -9,7 +9,7 @@ Trie::Trie()
 	root = std::shared_ptr<Node>(new Node());
 }
 
-void Trie::Insert(std::string& word)
+void Trie::Insert(const std::string& word)
 {
 	auto p = root.get();
 
@@ -32,7 +32,7 @@ void Trie::Insert(std::string& word)
 	}
 }
 
-std::string Trie::Search(std::string& word) const
+std::string Trie::Search(const std::string& word) const
 {
 	auto p = root.get();
 	for (size_t i = 0; i < word.length(); i++)
